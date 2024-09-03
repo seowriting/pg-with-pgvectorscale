@@ -13,7 +13,7 @@ RUN rustup component add rustfmt
 RUN cargo install cargo-pgrx --version 0.11.4 --locked
 RUN cargo pgrx init --pg16 pg_config
 
-RUN cd /tmp && git clone https://github.com/timescale/pgvectorscale && cd pgvectorscale/pgvectorscale && git checkout 0.3.0 && RUSTFLAGS="-C target-feature=+avx2,+fma" cargo pgrx package
+RUN cd /tmp && git clone https://github.com/timescale/pgvectorscale && cd pgvectorscale && git checkout 0.3.0 && cd pgvectorscale && RUSTFLAGS="-C target-feature=+avx2,+fma" cargo pgrx package
 RUN cd /tmp && git clone --branch v0.7.4 https://github.com/pgvector/pgvector && cd pgvector && make
 
 FROM postgres:16.4-bullseye
